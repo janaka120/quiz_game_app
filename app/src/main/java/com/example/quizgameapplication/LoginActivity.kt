@@ -1,5 +1,6 @@
 package com.example.quizgameapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.quizgameapplication.databinding.ActivityLoginBinding
@@ -23,7 +24,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginBinding.textViewLoginSignUp.setOnClickListener {
-
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
         }
 
         loginBinding.textViewLoginForgotPassword.setOnClickListener {
