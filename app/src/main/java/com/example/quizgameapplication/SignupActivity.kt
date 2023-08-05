@@ -21,8 +21,11 @@ class SignupActivity : AppCompatActivity() {
         signupBinding.buttonSignup.setOnClickListener {
             val email = signupBinding.editTextSignupEmail.text.toString()
             val password = signupBinding.editTextSignupPassword.text.toString()
-
-            signupWithFirebase(email, password)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                signupWithFirebase(email, password)
+            }else {
+                Toast.makeText(applicationContext, "Please enter values for email & password", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

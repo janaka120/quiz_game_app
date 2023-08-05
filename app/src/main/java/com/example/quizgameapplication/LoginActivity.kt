@@ -23,7 +23,11 @@ class LoginActivity : AppCompatActivity() {
         loginBinding.buttonLoginSignIn.setOnClickListener {
             val email = loginBinding.editTextLoginEmail.text.toString()
             val password = loginBinding.editTextLoginPassword.text.toString()
-            loginWithEmailAndPassword(email, password)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                loginWithEmailAndPassword(email, password)
+            }else {
+                Toast.makeText(applicationContext, "Please enter value for email & password", Toast.LENGTH_SHORT).show()
+            }
         }
 
         loginBinding.buttonLoginGoogleSignIn.setOnClickListener {
@@ -35,7 +39,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginBinding.textViewLoginForgotPassword.setOnClickListener {
-
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
     }
