@@ -126,5 +126,12 @@
             android:text="@string/my_forgot_password"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
