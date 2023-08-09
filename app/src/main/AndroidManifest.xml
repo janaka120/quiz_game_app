@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,10 +16,18 @@
         android:theme="@style/Theme.QuizGameApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ResultActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.SignupTheme"/>
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.SignupTheme" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false"
-            android:theme="@style/Base.Theme.SignupTheme"
-            android:parentActivityName=".LoginActivity"/>
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/Base.Theme.SignupTheme" />
         <activity
             android:name=".SignupActivity"
             android:exported="false"
@@ -40,7 +49,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Base.Theme.SignupTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

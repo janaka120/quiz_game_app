@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun loginWithEmailAndPassword(email: String, password: String) {
+    private fun loginWithEmailAndPassword(email: String, password: String) {
         loginBinding.progressBarLogin.visibility = View.VISIBLE
         loginBinding.buttonLoginSignIn.isClickable = false
         authFirebase.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
@@ -96,6 +96,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInGoogle() {
+        loginBinding.progressBarLogin.visibility = View.VISIBLE
+        loginBinding.buttonLoginGoogleSignIn.isClickable = false
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("1023444390308-bisrbc7t88uvlfr85o3mt3rtr1krfed6.apps.googleusercontent.com")
             .requestEmail().build()
@@ -104,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
         signIn()
     }
 
-    fun signIn() {
+    private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         activityResultLauncher.launch(signInIntent)
     }
@@ -121,6 +123,8 @@ class LoginActivity : AppCompatActivity() {
                         GoogleSignIn.getSignedInAccountFromIntent(data)
                     firebaseSignInWithGoogle(task)
                 }else {
+                    loginBinding.progressBarLogin.visibility = View.VISIBLE
+                    loginBinding.buttonLoginGoogleSignIn.isClickable = false
                     Toast.makeText(
                         applicationContext,
                         "Fail to Google signIn",
@@ -137,6 +141,10 @@ class LoginActivity : AppCompatActivity() {
 
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
+
+            loginBinding.progressBarLogin.visibility = View.INVISIBLE
+            loginBinding.buttonLoginGoogleSignIn.isClickable = true
+
             finish()
             firebaseGoogleAccount(account)
         } catch (e: ApiException) {
